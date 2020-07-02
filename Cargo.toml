@@ -1,0 +1,17 @@
+[package]
+name = "libp2p-reproducer"
+version = "0.1.0"
+authors = ["Arnaud Lefebvre <a.lefebvre@outlook.fr>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-std = "1.5"
+futures = "0.3"
+futures-util = "0.3"
+libp2p = { git = "https://github.com/BlackYoup/rust-libp2p/", rev = "eefd240333e7c6e1397f4dcd567ddb27c0e2224c" }
+#libp2p = "0.20.1"
+log = "0.4"
+pretty_env_logger = "0.4"
+rand = "0.7"

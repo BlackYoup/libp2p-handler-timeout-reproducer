@@ -40,7 +40,6 @@ pub struct MyBehaviour {
 impl NetworkBehaviourEventProcess<KademliaEvent> for MyBehaviour {
   fn inject_event(&mut self, event: KademliaEvent) {
     match event {
-      KademliaEvent::Discovered { .. } => {},
       _ => trace!("Received Kademlia event: {:?}", event)
     };
 
@@ -141,6 +140,9 @@ fn main() -> io::Result<()> {
   mplex.max_buffer_len_behaviour(MaxBufferBehaviour::Block);
   mplex.split_send_size(1024 * 1024);
   mplex.max_substreams(100000);
+  let mut yamux = libp2p::yamux::Config::default();
+  yamux.set_max_num_streams(100000);
+
   let transport = tcp.upgrade(Version::V1).authenticate(plaintext).multiplex(mplex);
 
   let mut swarm = {
